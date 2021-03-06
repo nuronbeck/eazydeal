@@ -1,11 +1,15 @@
 {
   "name": "eazydeal",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
+  "description": "Стройка в вашем городе проще чем кажется.",
   "productName": "EazyDeal",
-  "author": "Nurbek Ismoilov <nuronbeck@gmail.com>",
+  "author": "Nurbek Ismoilov <dataproger@gmail.com>",
   "private": true,
   "scripts": {
+    "dev": "quasar dev",
+    "dev-ssr": "quasar dev - ssr",
+    "build": "quasar build",
+    "build-ssr": "quasar build -m ssr",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },

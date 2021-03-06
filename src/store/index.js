@@ -1,28 +1,53 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-// import example from './module-example'
+import modules from './modules'
+import axios from '@boot/axios'
 
 Vue.use(Vuex)
 
-/*
- * If not building with SSR mode, you can
- * directly export the Store instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Store instance.
- */
-
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
-    modules: {
-      // example
+    state: () => ({
+      token: ''
+    }),
+    mutations: {},
+    getters: {},
+    actions: {
+      // Universal methods
+      getRequest ({ state }, method) {
+        const { token } = state
+        const headers = { Authorization: `Bearer ${token}` }
+        return axios.get(`/${method}`, { headers }).then((response) => response.data)
+      },
+      postRequest ({ state }, { method, params }) {
+        return axios.post(`${method}`, params).then((response) => response.data).catch((error) => {
+          if (error.response?.data?.errors) {
+            // Объединяем ошибки массивов в строки (Laravel возвращает error:[message]
+            const oErrors = error.response.data.errors
+            const errors = {}
+            Object.keys(oErrors).forEach((oKey) => {
+              // Laravel может вернуть ключ ошибки как contact.phone
+              // преобразуем для удобства использования
+              const key = oKey.replace(/\./g, '_')
+              errors[key] = Array.isArray(oErrors[oKey]) ? oErrors[oKey].join(', ') : oErrors[oKey]
+            })
+            throw errors
+          } else if (error.response?.data?.error) {
+            error = { error: error.response.data.error }
+            throw error
+          } else {
+            error = { error: 'Ошибка сети' }
+            throw error
+          }
+        })
+      }
     },
+
+    modules,
 
     // enable strict mode (adds overhead!)
     // for dev mode only
-    strict: process.env.DEBUGGING
+    strict: true // process.env.DEBUGGING
   })
 
   return Store

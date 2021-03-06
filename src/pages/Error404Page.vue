@@ -6,7 +6,7 @@
       </div>
 
       <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+        Oops. Страница не существует...
       </div>
 
       <q-btn
@@ -24,6 +24,6 @@
 
 <script>
 export default {
-  name: 'Error404'
+  name: 'Error404Page'
 }
 </script>
