@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import modules from './modules'
-import axios from '@boot/axios'
+import { api } from '@boot/axios'
 
 Vue.use(Vuex)
 
@@ -17,30 +17,30 @@ export default function (/* { ssrContext } */) {
       getRequest ({ state }, method) {
         const { token } = state
         const headers = { Authorization: `Bearer ${token}` }
-        return axios.get(`/${method}`, { headers }).then((response) => response.data)
-      },
-      postRequest ({ state }, { method, params }) {
-        return axios.post(`${method}`, params).then((response) => response.data).catch((error) => {
-          if (error.response?.data?.errors) {
-            // Объединяем ошибки массивов в строки (Laravel возвращает error:[message]
-            const oErrors = error.response.data.errors
-            const errors = {}
-            Object.keys(oErrors).forEach((oKey) => {
-              // Laravel может вернуть ключ ошибки как contact.phone
-              // преобразуем для удобства использования
-              const key = oKey.replace(/\./g, '_')
-              errors[key] = Array.isArray(oErrors[oKey]) ? oErrors[oKey].join(', ') : oErrors[oKey]
-            })
-            throw errors
-          } else if (error.response?.data?.error) {
-            error = { error: error.response.data.error }
-            throw error
-          } else {
-            error = { error: 'Ошибка сети' }
-            throw error
-          }
-        })
+        return api.get(`/${method}`, { headers }).then((response) => response.data)
       }
+      // postRequest ({ state }, { method, params }) {
+      //   return axios.post(`${method}`, params).then((response) => response.data).catch((error) => {
+      //     if (error.response?.data?.errors) {
+      //       // Объединяем ошибки массивов в строки (Laravel возвращает error:[message]
+      //       const oErrors = error.response.data.errors
+      //       const errors = {}
+      //       Object.keys(oErrors).forEach((oKey) => {
+      //         // Laravel может вернуть ключ ошибки как contact.phone
+      //         // преобразуем для удобства использования
+      //         const key = oKey.replace(/\./g, '_')
+      //         errors[key] = Array.isArray(oErrors[oKey]) ? oErrors[oKey].join(', ') : oErrors[oKey]
+      //       })
+      //       throw errors
+      //     } else if (error.response?.data?.error) {
+      //       error = { error: error.response.data.error }
+      //       throw error
+      //     } else {
+      //       error = { error: 'Ошибка сети' }
+      //       throw error
+      //     }
+      //   })
+      // }
     },
 
     modules,

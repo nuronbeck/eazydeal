@@ -1,5 +1,5 @@
 <template>
-  <q-card class="my-card">
+  <q-card class="my-card" flat>
     <img :src="imageUri" />
 
     <q-card-section class="text-dark">
@@ -20,10 +20,10 @@
 
       <q-list separator v-else>
         <q-item clickable v-ripple
-          v-for="(childItem, index) in items"
-          :key="`ProductPackCard__${index}___${childItem}`"
+          v-for="childItem in items"
+          :key="`ProductPackCard__${childItem.id}`"
         >
-          <q-item-section>{{ childItem }}</q-item-section>
+          <q-item-section>{{ childItem.name }}</q-item-section>
         </q-item>
       </q-list>
     </q-card-section>
@@ -40,21 +40,23 @@
 </template>
 
 <script>
+import { APP_BASE_URL } from '@configs'
+
 export default {
   name: 'ProductPackCard',
   props: {
     imageUri: {
       type: String,
-      required: true
+      default: () => `${APP_BASE_URL}/assets/img/main-categories/mc2.png`
     },
     title: {
       type: String,
       required: true,
-      default: 'Стройматериалы'
+      default: () => 'Стройматериалы'
     },
     items: {
       type: [Object, Array],
-      default: [] //eslint-disable-line
+      default: () => []
     }
   }
 }

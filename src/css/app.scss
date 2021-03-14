@@ -1,3 +1,8 @@
+@import 'swiper/swiper';
+@import 'swiper/components/navigation/navigation';
+@import 'swiper/components/pagination/pagination';
+@import 'swiper/components/scrollbar/scrollbar';
+
 // app global css in SCSS form
 @font-face {
     font-family: 'SF Pro Display';
@@ -216,7 +221,48 @@
 }
 
 body {
+    font-family: "SF Pro Display", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    background-color: #f5f5f5;
+}
+
+.section-header-h4 {
     font-family: "SF Pro Display";
     font-style: normal;
     font-weight: 700;
+    font-size: 52px;
+    color: $grey-910;
+}
+
+.section-pt {
+    padding-top: 60px;
+}
+
+.app-page-container {
+    width: 100%;
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 991px){
+    .section-header-h4 {
+        font-size: 36px;
+    }
+    .section-pt {
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 768px){
+    .section-header-h4 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px){
+    .section-pt {
+        padding-top: 16px;
+    }
 }

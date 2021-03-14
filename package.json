@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "quasar dev",
-    "dev-ssr": "quasar dev - ssr",
+    "dev-ssr": "quasar dev -m ssr",
     "build": "quasar build",
     "build-ssr": "quasar build -m ssr",
     "lint": "eslint --ext .js,.vue ./",
@@ -18,6 +18,8 @@
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0",
+    "swiper": "^6.5.0",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-i18n": "^8.0.0"
   },
   "devDependencies": {

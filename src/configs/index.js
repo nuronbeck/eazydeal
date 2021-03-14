@@ -1,4 +1,5 @@
 export const APP_BASE_URL = process.env.APP_BASE_URL || 'http://89.223.124.52'
+export const APP_API_PREFIX = '/api'
 
 export const APP_MENU_LIST = [
   {

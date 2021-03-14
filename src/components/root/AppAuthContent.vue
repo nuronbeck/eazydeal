@@ -155,7 +155,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      registerUser: 'user/registerUser'
+      // registerUser: 'user/registerUser'
     }),
     change_auth_by (authByTypeStr) {
       if (authByTypeStr !== this.auth_by) {
@@ -169,10 +169,10 @@ export default {
       }
     },
     registerAccount () {
-      this.registerUser({
-        // email: self.auth_form.email_phone
-        email: '+79324722070'
-      })
+      // this.registerUser({
+      //   // email: self.auth_form.email_phone
+      //   email: '+79324722070'
+      // })
     }
   }
 }

@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: () => ({
-    //   token: '',
+    token: 'asdasdadasd'
     //   userType: 'user',
     //   phone: '',
     //   email: '',
@@ -22,7 +22,7 @@ export default {
     //   },
   },
   getters: {
-    //   isAuth: (state) => !!state.token,
+    isAuth: (state) => !!state.token
     //   authUserType: (state) => state.userType,
   },
   actions: {
@@ -34,13 +34,13 @@ export default {
     // },
     //   // Специфика проекта - login и register один метод
     registerUser ({ dispatch }, params) {
-      return dispatch('postRequest', { method: 'auth/login', params }, { root: true })
-        .then(response => {
-          console.log(response)
-        })
-        .catch((errors) => {
-          throw Object.values(errors).reduce((result, current) => `${result} ${current}`)
-        })
+      // return dispatch('postRequest', { method: 'auth/login', params }, { root: true })
+      //   .then(response => {
+      //     console.log(response)
+      //   })
+      //   .catch((errors) => {
+      //     throw Object.values(errors).reduce((result, current) => `${result} ${current}`)
+      //   })
     }
     //   logout({ commit }) {
     //     return new Promise((resolve) => {

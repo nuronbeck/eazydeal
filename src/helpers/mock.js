@@ -11,6 +11,14 @@ export const homePageSlider = [
     id: 2,
     imageUri: 'https://cdn.quasar.dev/img/parallax2.jpg',
     content: false
+  },
+  {
+    id: 3,
+    imageUri: 'https://cdn.quasar.dev/img/mountains.jpg',
+    content: {
+      title: 'Акция! 2 по цене 1-го!',
+      subTitle: 'Мега эксклюзив'
+    }
   }
 ]
 
